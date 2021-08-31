@@ -9,9 +9,15 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@types/dat.gui": "^0.7.7",
+    "dat": "^13.13.1",
+    "dat.gui": "^0.7.7",
+    "gsap": "^3.7.1",
     "next": "11.1.0",
     "react": "17.0.2",
-    "react-dom": "17.0.2"
+    "react-dom": "17.0.2",
+    "styled-components": "^5.3.1",
+    "three": "^0.132.2"
   },
   "devDependencies": {
     "eslint": "7.32.0",
