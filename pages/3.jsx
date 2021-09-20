@@ -1,10 +1,8 @@
 import React, {useRef, useEffect} from 'react';
-import * as THREE from 'three'
 import dynamic from 'next/dynamic';
-import gsap from 'gsap';
 import styled from 'styled-components';
-import dat from 'dat.gui';
-
+import * as THREE from 'three';
+import gsap from 'gsap';
 import Nav from '../components/nav';
 
 const Main = styled.main`
@@ -24,7 +22,8 @@ const Content = styled.section`
 
 const Tutorial3 = () => {
     const canvasRef = useRef(null);
-    useEffect(()=>{
+    useEffect(async ()=>{
+        const dat = await import('dat.gui')
         // Loading
     const textureLoader = new THREE.TextureLoader();
     const height = textureLoader.load('/textures/cursedcasnoise.png');
@@ -69,7 +68,7 @@ const Tutorial3 = () => {
         }
     }
     // Canvas
-    const canvas = canvasRef.current;
+    const canvas = document.querySelector('#canvast-test3');
 
     // Scene
     const scene = new THREE.Scene()
@@ -214,7 +213,7 @@ const Tutorial3 = () => {
     }
 
     tick()
-    })
+    });
 
     return (
         <>
@@ -224,7 +223,7 @@ const Tutorial3 = () => {
                     <h1>Lorem Ipsum</h1>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
                 </Content>
-                <canvas ref={canvasRef} />
+                <canvas id="canvast-test3"/>
             </Main>
         </>
     )

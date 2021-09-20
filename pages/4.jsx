@@ -1,12 +1,8 @@
 import React, {useRef, useEffect} from 'react';
-import * as THREE from 'three';
-import dynamic from 'next/dynamic';
-import gsap from 'gsap';
 import styled from 'styled-components';
-import dat from 'dat.gui';
-import { OrbitControls } from 'three';
 import Nav from '../components/nav';
-import { DoubleSide } from 'three';
+import dynamic from 'next/dynamic';
+import * as THREE from 'three'; 
 
 const Main = styled.main`
     background: #1f1f1f;
@@ -25,7 +21,8 @@ const Content = styled.section`
 
 const Tutorial3 = () => {
     const canvasRef = useRef(null);
-    useEffect(()=>{
+    useEffect(async ()=>{
+        const dat = await import('dat.gui');
         // Loading
     const textureLoader = new THREE.TextureLoader();
     const height = textureLoader.load('/textures/cursedcasnoise.png');
@@ -79,7 +76,7 @@ const Tutorial3 = () => {
     }
 
     // Canvas
-    const canvas = canvasRef.current;
+    const canvas = document.querySelector('#canvas-test4');
 
     // Scene
     const scene = new THREE.Scene()
@@ -152,9 +149,9 @@ const Tutorial3 = () => {
     camera.position.z = 1
     scene.add(camera)
     transformControls(camera, 'camera')
-    // Controls
-    const controls = new OrbitControls(camera, canvas)
-    controls.enableDamping = true
+    // // Controls
+    // const controls = new OrbitControls(camera, canvas)
+    // controls.enableDamping = true
 
     /**
      * Renderer
@@ -198,15 +195,13 @@ const Tutorial3 = () => {
         window.requestAnimationFrame(tick)
     }
 
-    tick()
+    tick();
     })
-
     return (
         <>
             <Nav/>
             <Main>
-                
-                <canvas ref={canvasRef} />
+            <canvas id="canvas-test4" />
             </Main>
         </>
     )
