@@ -21,6 +21,12 @@ const Icon = styled.p`
   margin: 0;
 `;
 
+const VerticalUl = styled.ul`
+  display: inline;
+  list-style: none;
+  text-decoration: underline;
+`;
+
 export default function Home() {
   return (
     <>
@@ -30,6 +36,10 @@ export default function Home() {
       <h1>3D animation sketchbook</h1>
       <h3>This is Richard&apos;s 3D animation sketchbook. A place where he can experiment with 3d in the browser.</h3>
       <p><i>Use the menu above to view the experiments</i></p>
+      <VerticalUl>
+        <li><a href="https://github.com/RichART-Official/3d-animation-sketchbook">Source code</a></li>
+        <li><a href="https://therichard.space/contact">Contact</a></li>
+      </VerticalUl>
     </Main>
     </>
     

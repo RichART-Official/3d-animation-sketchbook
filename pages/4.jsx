@@ -1,8 +1,8 @@
 import React, {useRef, useEffect} from 'react';
 import styled from 'styled-components';
 import Nav from '../components/nav';
-import dynamic from 'next/dynamic';
 import * as THREE from 'three'; 
+import gsap from 'gsap';
 
 const Main = styled.main`
     background: #1f1f1f;
@@ -30,7 +30,6 @@ const Tutorial3 = () => {
 
     // Debug
     let active = true;
-    console.log(dat);
     let gui = active ? new dat.GUI() : null;
 
     const pointLightDebugger = (light, name) => {
@@ -84,8 +83,10 @@ const Tutorial3 = () => {
     // Objects
 
     // Materials
+    const randomNbr = () => Math.random() * 5 -2.5;
+
     let counter = 0;
-    const Wall = (x, y, z, rotateX, rotateY, rotateZ, img, name) =>  {
+    const Wall = (x, y, z, rotateX, rotateY, rotateZ, img) =>  {
         let geometry = new THREE.PlaneBufferGeometry(1,1);
 
         const material = new THREE.MeshStandardMaterial({
@@ -93,8 +94,9 @@ const Tutorial3 = () => {
             doubleSide: true
         });
         
+        
         const wall = new THREE.Mesh(geometry, material);
-        wall.position.set(x||0,y||0,z||0);
+        wall.position.set(x||randomNbr(), y||randomNbr(),z||randomNbr());
         wall.rotation.x = rotateX || 0;
         wall.rotation.y = rotateY || 0;
         wall.rotation.z = rotateZ || 0;
@@ -103,9 +105,9 @@ const Tutorial3 = () => {
     }
 
    
-    Wall(1)
-    Wall(0.6, 0, -0.5, 0, -1.75)
-    Wall(-0.6, 0, -0.5, 0, -1.75)
+    for (let i = 0; i <= 15; i++) {
+        Wall();
+    }
 
 
     // Mesh
@@ -114,7 +116,7 @@ const Tutorial3 = () => {
     const pointLight = new THREE.PointLight(0xe4e4ff, 1)
     pointLight.position.set(0.28,1.46,0.28);
     pointLight.distance = 6;
-    pointLight.intensity = 5;
+    pointLight.intensity = 1.69;
     scene.add(pointLight)
     pointLightDebugger(pointLight, 'key');
 
@@ -180,6 +182,9 @@ const Tutorial3 = () => {
     /**
      * Animate
      */
+        
+        gsap.fromTo(camera.position, {y: -3, z: 5, duration: 5}, {y:4, z: -1, duration: 5, yoyo: true, repeat: -1})
+
     const clock = new THREE.Clock()
     
     const tick = () =>
