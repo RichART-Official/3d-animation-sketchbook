@@ -146,9 +146,12 @@ const Tutorial3 = () => {
      */
     // Base camera
     const camera = new THREE.PerspectiveCamera(75, sizes.width / sizes.height, 0.1, 100)
-    camera.position.x = -0.1
-    camera.position.y = 0
-    camera.position.z = 1
+    camera.position.x = 1.51
+    camera.position.y = -1.18
+    camera.position.z = 3.31
+    camera.rotation.x = 0.16
+    camera.rotation.y = 0.39
+    camera.rotation.z = 0
     scene.add(camera)
     transformControls(camera, 'camera')
     // // Controls
@@ -183,7 +186,7 @@ const Tutorial3 = () => {
      * Animate
      */
         
-        gsap.fromTo(camera.position, {y: -3, z: 5, duration: 5}, {y:4, z: -1, duration: 5, yoyo: true, repeat: -1})
+        gsap.fromTo(pointLight.position, {y: -4, z: 4, duration: 5}, {y:4, z: 0, duration: 5, yoyo: true, repeat: -1})
 
     const clock = new THREE.Clock()
     

@@ -11,10 +11,10 @@ const Main = styled.main`
 
 const Content = styled.section`
     margin: 15vw;
-    width: 30vw;
     z-index: 2;
     position: absolute;
     color: white;
+    width: 30rem;
     h1 {
         font-size: 5rem;
     }
@@ -168,9 +168,9 @@ const Tutorial2 = () => {
         <Main>
             <Content>
                 <h1>Lorem Ipsum dolor</h1>
-                <canvas id="canvast-test2"/>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </Content>
+            <canvas id="canvast-test2"/><canvas id="canvast-test2"/>
         </Main>
         </>
         
