@@ -9,6 +9,7 @@ const NavWrapper = styled.nav`
     justify-content: space-between;
     padding: 1em;
     color: cadetblue;
+    z-index: 2;
 `;
 const NavItems = styled.ul`
     display: inline;

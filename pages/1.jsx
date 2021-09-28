@@ -10,13 +10,9 @@ const Main = styled.main`
     position: relative;
     display: flex;
     justify-content: center;
-    canvas {
-        z-index: 1;
-    }
 `;
 
 const Canvas = styled.canvas`
-    z-index: 1;
     position: absolute;
 `;
 
