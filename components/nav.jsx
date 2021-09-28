@@ -5,8 +5,6 @@ import styled from 'styled-components';
 const NavWrapper = styled.nav`
     display: flex;
     position: absolute;
-    width: 100%;
-    justify-content: space-between;
     padding: 1em;
     color: cadetblue;
     z-index: 2;
