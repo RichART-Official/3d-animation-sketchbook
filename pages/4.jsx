@@ -116,9 +116,10 @@ const Tutorial3 = () => {
         
         const wall = new THREE.Mesh(geometry, material);
         wall.position.set(x||randomNbr(), y||randomNbr(),z||randomNbr());
-        wall.rotation.x = rotateX || 0;
-        wall.rotation.y = rotateY || 0;
-        wall.rotation.z = rotateZ || 0;
+        wall.rotation.x = rotateX || randomNbr();
+        wall.rotation.y = rotateY || randomNbr();
+        wall.rotation.z = rotateZ || randomNbr();
+        wall.scale.set(randomNbr()*2 , randomNbr()*2)
         transformControls(wall, `wall ${counter++}`)
         scene.add(wall)
     }
@@ -131,12 +132,13 @@ const Tutorial3 = () => {
 
     // Mesh
     // Lights
-
+    const ambientLight = new THREE.AmbientLight(0xffff, 0.3);
     const pointLight = new THREE.PointLight(0xe4e4ff, 1)
     pointLight.position.set(0.28,1.46,0.28);
     pointLight.distance = 6;
     pointLight.intensity = 1.69;
-    scene.add(pointLight)
+    scene.add(pointLight);
+    scene.add(ambientLight);
     pointLightDebugger(pointLight, 'key');
 
 
@@ -205,7 +207,7 @@ const Tutorial3 = () => {
     /*
      * Animate
      */ 
-        gsap.fromTo(pointLight.position, {y: -4, z: 4, duration: 5}, {y:4, z: 0, duration: 5, yoyo: true, repeat: -1})
+        gsap.fromTo(pointLight.position, {y: 0, z: 3, duration: 5}, {y:1, z: 0, duration: 5, yoyo: true, repeat: -1})
 
     const clock = new THREE.Clock()
 
