@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import Nav from '../components/nav';
 import * as THREE from 'three'; 
 import gsap from 'gsap';
+import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
 
 const Main = styled.main`
     background: #1f1f1f;
@@ -83,10 +84,28 @@ const Tutorial3 = () => {
     // Objects
 
     // Materials
+    
     const randomNbr = () => Math.random() * 5 -2.5;
 
     let counter = 0;
-    const Wall = (x, y, z, rotateX, rotateY, rotateZ, img) =>  {
+
+    const video = document.createElement('video');
+    video.autoplay = true;
+
+    if (navigator.mediaDevices.getUserMedia) {
+        navigator.mediaDevices.getUserMedia({ video: true })
+          .then(function (stream) {
+            video.srcObject = stream;
+          })
+          .catch(function (err0r) {
+            console.log("Something went wrong!");
+          });
+      }
+
+      const videoTexture = new THREE.VideoTexture(video);
+
+
+    const Wall = (img, x, y, z, rotateX, rotateY, rotateZ) =>  {
         let geometry = new THREE.PlaneBufferGeometry(1,1);
 
         const material = new THREE.MeshStandardMaterial({
@@ -106,7 +125,7 @@ const Tutorial3 = () => {
 
    
     for (let i = 0; i <= 15; i++) {
-        Wall();
+        Wall(videoTexture);
     }
 
 
@@ -156,7 +175,7 @@ const Tutorial3 = () => {
     transformControls(camera, 'camera')
     // // Controls
     // const controls = new OrbitControls(camera, canvas)
-    // controls.enableDamping = true
+    
 
     /**
      * Renderer
@@ -182,20 +201,28 @@ const Tutorial3 = () => {
         mouse.y = - (e.clientY / sizes.width) * 2 + 1;
     })
 
+        // controls.enableDamping = true
+
+    let controls = new FlyControls(camera, renderer.domElement);
+    controls.movementSpeed = 1000;
+    controls.domElement = renderer.domElement;
+    controls.rollSpeed = Math.PI / 24;
+    controls.autoForward = true;
+    controls.dragToLook = true;
     /**
      * Animate
-     */
-        
+     */ 
         gsap.fromTo(pointLight.position, {y: -4, z: 4, duration: 5}, {y:4, z: 0, duration: 5, yoyo: true, repeat: -1})
 
     const clock = new THREE.Clock()
-    
+
     const tick = () =>
     {
         const elapsedTime = clock.getElapsedTime()
-        
+        const delta = clock.getDelta();
 
-        
+        controls.update( delta );
+
         // Render
         renderer.render(scene, camera)
 
@@ -205,6 +232,9 @@ const Tutorial3 = () => {
 
     tick();
     })
+
+    
+    
     return (
         <>
             <Nav/>
