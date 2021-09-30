@@ -3,10 +3,10 @@ import styled from 'styled-components';
 import Nav from '../components/nav';
 import * as THREE from 'three'; 
 import gsap from 'gsap';
-import { FlyControls } from 'three/examples/jsm/controls/FlyControls';
+import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
 const Main = styled.main`
-    background: #1f1f1f;
+    background: #000;
 `;
 
 const Content = styled.section`
@@ -174,7 +174,7 @@ const Tutorial3 = () => {
     scene.add(camera)
     transformControls(camera, 'camera')
     // // Controls
-    // const controls = new OrbitControls(camera, canvas)
+    const controls = new OrbitControls(camera, canvas)
     
 
     /**
@@ -202,14 +202,7 @@ const Tutorial3 = () => {
     })
 
         // controls.enableDamping = true
-
-    let controls = new FlyControls(camera, renderer.domElement);
-    controls.movementSpeed = 1000;
-    controls.domElement = renderer.domElement;
-    controls.rollSpeed = Math.PI / 24;
-    controls.autoForward = true;
-    controls.dragToLook = true;
-    /**
+    /*
      * Animate
      */ 
         gsap.fromTo(pointLight.position, {y: -4, z: 4, duration: 5}, {y:4, z: 0, duration: 5, yoyo: true, repeat: -1})
